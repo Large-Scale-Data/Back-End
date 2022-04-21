@@ -41,8 +41,8 @@ def shoppingsort(datalist, search, nut, dairy, gluten):
 
 
 #result = shoppingsort([("Zx", "mexico", ("tomato", "beef")), ("Ax", "mexico", ("tomato", "beef")), ("Cx", "mexico", ("bread", "meat"))], "", 0, 0, 0)
-result = shoppingsort([("good burger", "mexico", ("tomato", "beef")), ("bad burger", "ax", ("tomato", "beef")), ("hot dog", "mexico", ("bread", "meat"))], "burg", 0, 0, 1)
-print(result)
+#result = shoppingsort([("good burger", "mexico", ("tomato", "beef")), ("bad burger", "ax", ("tomato", "beef")), ("hot dog", "mexico", ("bread", "meat"))], "burg", 0, 0, 1)
+#print(result)
 
 
 # data=[(foodname,country,(ingredients...)),(),()...]
