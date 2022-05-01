@@ -3,12 +3,12 @@ import re
 nut_ = ("peanut", "almond", "cashew", "nut")
 dairy_ = ("milk", "cheese", "butter", "dairy")
 gluten_ = ("bread", "gluten")
-vegitarian_=("meat","beef","pork","poultry","chicken","fish")
+vegitarian_=("meat", "beef", "pork", "poultry", "chicken", "fish")
 #also sets vegitarian and dairy flags on 
-vegan_=("egg","honey","mayo")
+vegan_=("egg", "honey", "mayo")
 
-# sorts a list of data elements in format ((foodname,country,(list of ingredients...)...), search query string, allergens as a 1 or 0 representing true or false,,,
-def shoppingsort(datalist, search, nut, dairy, gluten, vegi, vegan):
+# sorts a list of data elements in format ((foodname,country,(list of ingredients...)...), search query string, allergens as a 1 or 0 representing true or false and country,,,
+def shoppingsort(datalist, search, nut, dairy, gluten, vegi, vegan, us, mexico, uk):
     dataremovelist = []
     datacount=0
     if vegan == 1:
@@ -39,7 +39,6 @@ def shoppingsort(datalist, search, nut, dairy, gluten, vegi, vegan):
             if vegi == 1:
                 for i in vegitarian_:
                     for ing in data[2]:
-                        print(data[0],i,ing)
                         if re.search(r"" + i, ing, re.IGNORECASE):
                             match = 0
                             break
@@ -49,6 +48,15 @@ def shoppingsort(datalist, search, nut, dairy, gluten, vegi, vegan):
                         if re.search(r"" + i, ing, re.IGNORECASE):
                             match = 0
                             break
+            if us == 1:
+                if re.search(r""+data[1],"usa", re.IGNORECASE):
+                    match = 0
+            if mexico == 1:
+                if re.search(r""+data[1],"mexico", re.IGNORECASE):
+                    match = 0
+            if uk == 1:
+                if re.search(r""+data[1],"uk", re.IGNORECASE):
+                    match = 0
         if match == 0:
             dataremovelist.append(datacount)
         datacount += 1
@@ -60,8 +68,8 @@ def shoppingsort(datalist, search, nut, dairy, gluten, vegi, vegan):
     return datalist
 
 #tests
-#result = shoppingsort([("Zx", "mexico", ("tomato", "beef")), ("Ax", "mexico", ("tomato", "beef","meat")), ("Cx", "mexico", ("bread", "meat")),("tx", "mexico", ("tomato","grass"))], "", 0, 0, 0,1,1)
-#result = shoppingsort([("hat","africa",("cloth","dye")),("good burger", "mexico", ("tomato", "beef")), ("bad burger", "ax", ("tomato", "beef", "bread")), ("hot dog", "mexico", ("bread", "meat"))], "burg", 1, 1, 1, 0, 0)
+#result = shoppingsort([("Zx", "mexico", ("tomato", "beef")), ("Ax", "mexico", ("tomato", "beef","meat")), ("Cx", "mexico", ("bread", "meat")),("tx", "mexico", ("tomato","grass"))], "", 0, 0, 0,1,1,0,0,0)
+#result = shoppingsort([("hat","africa",("cloth","dye")),("good burger", "us", ("tomato", "beef")), ("bad burger", "ax", ("tomato", "beef", "bread")), ("hot dog", "mexico", ("bread", "meat"))], "burg", 1, 1, 1, 0, 0,0,0,0)
 #print(result)
 
 
